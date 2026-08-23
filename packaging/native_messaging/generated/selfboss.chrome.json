@@ -1,0 +1,9 @@
+{
+  "name": "com.selfboss.native_host",
+  "description": "LoopGuard Native Messaging host",
+  "path": "D:\\AppAntiProcrastinate\\packaging\\native_messaging\\generated\\selfboss_native_host_dev.cmd",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://eghfombihlnbmbledehaacoigdlceegl/"
+  ]
+}
