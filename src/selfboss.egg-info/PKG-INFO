@@ -1,0 +1,54 @@
+Metadata-Version: 2.4
+Name: selfboss
+Version: 0.1.0
+Summary: Windows-only local desktop MVP for self-directed focus and reversible access control.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: PySide6>=6.6
+
+# Self-Boss
+
+Self-Boss is a Windows-only local desktop MVP for turning focused work into controlled access to high-dopamine activities.
+
+The MVP is intentionally local-only:
+
+- Python 3.10+
+- PySide6 Widgets, not QML
+- SQLite only for future persistence
+- pytest only for tests
+- PyInstaller only for packaging
+- no cloud, backend, web stack, Docker, Electron, Tauri, or mobile code
+
+## Safety Principles
+
+Self-Boss may eventually block apps or websites, but the bootstrap contains no real blocker logic.
+
+Required safety rules:
+
+- Test mode is mandatory and must be the development default.
+- Recovery mode is mandatory and must work even if the GUI fails.
+- Every blocker action must be reversible.
+- Every system-level change must be marker-based.
+- Recovery files, recovery tests, and safe-mode logic must never be removed or weakened.
+- Real enforcement stays deferred until recovery tooling and tests exist.
+
+## Deferred Work
+
+The browser extension/native connector and guardian service are explicitly deferred. Placeholders live under `deferred/` so future work has a home without activating any system integration.
+
+## Local Setup
+
+```powershell
+py -3.10 -m venv .venv
+.\.venv\Scripts\python -m pip install --upgrade pip
+.\.venv\Scripts\python -m pip install -e . -r requirements-dev.txt
+```
+
+## Run Checks
+
+```powershell
+.\.venv\Scripts\python -m pytest -q
+.\.venv\Scripts\python -m selfboss.main
+```
+
+The module entry point currently prints a harmless startup message and exits without changing the system.
