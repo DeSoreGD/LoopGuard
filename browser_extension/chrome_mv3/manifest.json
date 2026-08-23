@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "LoopGuard",
+  "short_name": "LoopGuard",
+  "version": "0.1.0",
+  "description": "Local LoopGuard companion for website blocking and desktop app status.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr8iSRMGoTnV/Cirr7AiFgQCzoB8Z8VB8BHUqW9qj7pK3Ul0nMrk2M3s2MzeZSoBBEQ+bRaIjotkDqWn9I2rg1wtjMIDwSctFV4KVgjvtvap5MJdZDDzL6l+8MSBJgQzHA+5bFHpCn7rVAa3kLEAWzgl2E38a90u3G7a0IcJFAeBCD36EIy6WHJoECBhQWC0a16eVs/3aOWgsSEu7DRjOnqePavCGLroB23qKk65AT+oBsEWwk4JekFulIVw92ULYeUG40oURDkxPBnf+SiHkm88cQTrDWnPvGTpaFjjWY60NQIDAQAB",
+  "incognito": "split",
+  "permissions": ["nativeMessaging", "tabs", "alarms", "declarativeNetRequest"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://youtube.com/*", "*://*.youtube.com/*"],
+      "js": ["content_scripts/youtube_spa.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "LoopGuard"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ]
+}
